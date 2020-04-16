@@ -43,6 +43,8 @@ var mark = {
                                 color = "#4CAF50";
                             } else if(val.chg == 0) {
                                 color = "#212529";
+                            } else {
+                                color = "#E91E63";
                             }
 
                             html += '<tr>';
