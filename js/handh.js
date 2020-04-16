@@ -41,6 +41,8 @@ var mark = {
 
                             if(val.chg > 0) {
                                 color = "#4CAF50";
+                            } else if(val.chg == 0) {
+                                color = "#212529";
                             }
 
                             html += '<tr>';
