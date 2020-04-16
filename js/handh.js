@@ -6,7 +6,7 @@ $(document).ready(function() {
 
 var mark = {
 
-    api: 'http://revamp.infarmsolutions.com/api',
+    api: 'https://test.infarmsolutions.com/api',
     init: async function() {
 
       data = {
