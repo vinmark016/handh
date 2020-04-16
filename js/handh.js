@@ -6,14 +6,22 @@ $(document).ready(function() {
 
 var mark = {
 
+    api: 'http://revamp.infarmsolutions.com/api',
     init: async function() {
+
+      data = {
+           action: 'readBasis',
+           json:1
+       };
+
+       mark.ajaxCall(data, "POST", true);
 
     },
 
     ajaxCall: async function(data,method,async) {
 
         $.ajax({
-             url: feedsite.own,
+             url: mark.api,
              type: method,
              async: async,
              data:data,
