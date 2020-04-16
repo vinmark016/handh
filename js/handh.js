@@ -53,8 +53,8 @@ var mark = {
                             html += `   <td>${val.basis}</td>`;
                             html += `   <td>${val.futures}</td>`;
                             html += `   <td style="font-weight:bold; color:${color};">${val.chg}</td>`;
-                            html += `   <td>${val.symbol}</td>`;
-                            html += `   <td>${val.last_trade}</td>`;
+                            html += `   <td class="_mb">${val.symbol}</td>`;
+                            html += `   <td class="_mb">${val.last_trade}</td>`;
                             html += '</tr>';
 
                         });

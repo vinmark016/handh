@@ -22,6 +22,21 @@
 
 }
 
+@media (max-width: 420px) {
+
+	._mb {
+		display: none;
+	}
+
+	.slider-caption {
+		margin: 60px auto !important;
+		padding: 20px !important;
+		left:0px !important;
+		width: 100% !important;
+	}
+
+}
+
 
 @media (min-width: 992px) and (max-width: 1199.98px) {
 
@@ -1024,8 +1039,13 @@
 
 @media (min-width: 768px) and (max-width: 991.98px) {
 
+	.slider-caption {
+		width: 100% !important;
+		left: 0px !important;
+	}
+
 	.swiper_wrapper:not(.full-screen):not(.canvas-slider-grid),
-	.swiper_wrapper:not(.full-screen):not(.canvas-slider-grid) .swiper-slide { height: 400px !important; }
+	.swiper_wrapper:not(.full-screen):not(.canvas-slider-grid) .swiper-slide { height: 700px !important; }
 
 	.sidebar-widgets-wrap {
 		position: relative;
@@ -1565,7 +1585,7 @@
 	#top-account a.btn i:last-child { display: none; }
 
 	.swiper_wrapper:not(.force-full-screen),
-	.swiper_wrapper:not(.force-full-screen):not(.canvas-slider-grid) .swiper-slide { height: 180px !important; }
+	.swiper_wrapper:not(.force-full-screen):not(.canvas-slider-grid) .swiper-slide { height: 550px !important; }
 
 	.swiper_wrapper .slider-caption h2 { font-size: 1.75rem; }
 
@@ -1774,4 +1794,3 @@ only screen and (                min-resolution: 2dppx) and (max-width: 991.98px
 	#logo a.standard-logo { display: none; }
 	#logo a.retina-logo { display: inline-block; }
 }
-
