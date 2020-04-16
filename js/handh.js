@@ -9,6 +9,7 @@ var mark = {
     api: 'https://test.infarmsolutions.com/api',
     init: async function() {
 
+
       data = {
            action: 'readBasis',
            json:1
@@ -49,7 +50,7 @@ var mark = {
 
                         });
 
-                        $("#cornBids").html(html);
+                        $("#cornBids tbody").html(html);
 
                     break;
 
