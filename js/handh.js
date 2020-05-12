@@ -7,7 +7,15 @@ $(document).ready(function() {
 var mark = {
 
     api: 'https://test.infarmsolutions.com/api',
+		contractValues: [],
     init: async function() {
+
+			$("#contractMonths").change(function() {
+
+				var value = $(this).val();
+				$("#bidValue").val(mark.contractValues[value]);
+
+			})
 
 
       data = {
@@ -35,6 +43,7 @@ var mark = {
                     case 'readBasis':
 
                         var html = '';
+												var dropdown = '';
                         var t = $.parseJSON(e);
                         var color = "#E91E63";
                         $.each(t,function(key, val) {
@@ -57,8 +66,12 @@ var mark = {
                             html += `   <td class="_mb">${val.last_trade}</td>`;
                             html += '</tr>';
 
+														dropdown += `<option value="${val.basis_id}">${val.delivery}</option>`;
+														mark.contractValues[val.basis_id] = val.bid;
+
                         });
 
+												$("#contractMonths").append(dropdown);
                         $("#cornBids tbody").html(html);
 
                     break;

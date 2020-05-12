@@ -21,6 +21,9 @@
 	<link rel="stylesheet" href="css/animate.css" type="text/css" />
 	<link rel="stylesheet" href="css/magnific-popup.css" type="text/css" />
 
+	<!-- DatePicker CSS -->
+	<link rel="stylesheet" href="css/components/datepicker.css" type="text/css" />
+
 	<link rel="stylesheet" href="demos/construction/css/fonts.css" type="text/css" />
 
 	<link rel="stylesheet" href="css/responsive.css?a=1" type="text/css" />
@@ -124,7 +127,7 @@
 						<div class="container clearfix">
 							<div class="slider-caption" style="font-size:12px; margin-top:0px; top:0; max-width:100%;">
 								<div style="padding: 10px; background: #333;  color: #FFF;">Corn</div>
-								<div id="contractBtn">Contract Now</div>
+								<div id="contractBtn" data-toggle="modal" data-target=".bs-example-modal-lg">Contract Now</div>
 								<table class="table table-striped" id="cornBids">
 									<thead>
 									<tr>
@@ -273,6 +276,84 @@ their expanding production sites over the next few year
 
 			</div>
 
+			<div class="modal fade bs-example-modal-lg" tabindex="-1" role="dialog" aria-labelledby="myLargeModalLabel" aria-hidden="true">
+				<div class="modal-dialog modal-lg">
+					<div class="modal-body">
+						<div class="modal-content">
+							<div class="modal-header">
+								<h4 class="modal-title" id="myModalLabel">Corn Contract Details</h4>
+								<button type="button" class="close" data-dismiss="modal" aria-hidden="true">&times;</button>
+							</div>
+							<div class="modal-body row">
+
+								<div class="col-md-6 form-group">
+									<label>Contract Month:</label>
+									<select class="form-control required" id="contractMonths">
+										<option value="">-- Select One --</option>
+									</select>
+								</div>
+
+								<div class="col-md-6 form-group">
+									<label>Bid:</label>
+									<input type="text" class="form-control" id="bidValue" value="" placeholder="Bid" disabled>
+								</div>
+
+								<div class="col-md-12 form-group">
+									<label>Bushels:</label>
+									<input type="text" class="form-control" value="" placeholder="">
+								</div>
+
+								<div class="col-12">
+									<div class="row input-daterange">
+										<div class="col-md-6 form-group">
+											<label for="car-rental-pickup-date">Delivery Time Frame:</label>
+											<input type="text" name="car-rental-pickup-date" id="car-rental-pickup-date" class="form-control input-datepicker tleft required" value="" placeholder="Choose Date">
+										</div>
+										<div class="col-md-6 form-group">
+											<label for="car-rental-dropoff-date">-</label>
+											<input type="text" name="car-rental-dropoff-date" id="car-rental-dropoff-date" class="form-control input-datepicker tleft" value="" placeholder="Choose Date">
+										</div>
+									</div>
+								</div>
+
+								<div class="col-md-12 form-group">
+									<label>Farm Name:</label>
+									<input type="text" class="form-control" value="" placeholder="">
+								</div>
+
+								<div class="col-md-12 form-group">
+									<label>Contact Name:</label>
+									<input type="text" class="form-control" value="" placeholder="">
+								</div>
+
+								<div class="col-md-12 form-group">
+									<label>Phone:</label>
+									<input type="text" class="form-control" value="" placeholder="">
+								</div>
+
+								<div class="col-md-12 form-group">
+									<label>Email:</label>
+									<input type="text" class="form-control" value="" placeholder="">
+								</div>
+
+								<div class="col-12 mt-2 mb-3">
+									<div class="card p-3 bg-light">
+										<div class="car-body">
+											<p class="mb-0">By pressing the submit button below I agree to the <a href="#">Terms and Conditions</a> of this agreement. All contracts must also be agreed to signed by H & H Farms to be considered valid</p>
+										</div>
+									</div>
+								</div>
+
+								<div class="col-12">
+									<button type="submit" name="car-rental-submit" class="btn btn-success btn-lg" style="margin: 0 auto;">Reserve Now</button>
+								</div>
+
+							</div>
+						</div>
+					</div>
+				</div>
+			</div>
+
 		</section><!-- #content end -->
 
 	</div><!-- #wrapper end -->
@@ -285,11 +366,25 @@ their expanding production sites over the next few year
 	============================================= -->
 	<script src="js/jquery.js"></script>
 	<script src="js/plugins.js"></script>
+	<!-- DatePicker JS -->
+	<script src="js/components/datepicker.js"></script>
 
 	<!-- Footer Scripts
 	============================================= -->
 	<script src="js/functions.js"></script>
 	<script src="js/handh.js?a=7"></script>
+
+	<script>
+		jQuery(document).ready( function(){
+
+			$('.input-daterange').datepicker({
+				autoclose: true,
+				startDate: "today",
+				todayHighlight: true
+			});
+
+		});
+	</script>
 
 </body>
 </html>
