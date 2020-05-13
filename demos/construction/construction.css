@@ -10,13 +10,8 @@
 #contractBtn {
 	color: #FFF;
   background: #4CAF50;
-  position: absolute;
-  right: 0;
-  margin-right: 45px;
-  margin-top: -33px;
-  padding: 5px 10px;
-	cursor: pointer;
-  border-radius: 3px;
+	border: none;
+	padding-top: 3px;
 }
 
 #top-bar { background-color: #FFF; }
