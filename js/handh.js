@@ -13,7 +13,22 @@ var mark = {
 			$("#contractMonths").change(function() {
 
 				var value = $(this).val();
+				var month = $(this).children("option:selected").text().split(" ");
+				var forMomentMOnth = month[0].charAt(0) + month[0].slice(1).toLowerCase();
+				var numMonth = (moment().month(forMomentMOnth).format('M'));
+				var numYear = moment().format('YYYY');
+				var fullDate = `${numMonth}/01/${numYear}`;
+				var maxDate = moment(fullDate).add(1, 'month').format('MM/DD/YYYY');
+				maxDate = moment(maxDate).subtract(1, 'day').format('MM/DD/YYYY');
+
 				$("#bidValue").val(mark.contractValues[value]);
+
+				$('.input-daterange').datepicker('clearDates').datepicker('destroy').datepicker({
+					autoclose: true,
+					startDate: fullDate,
+					endDate: maxDate,
+					todayHighlight: true
+				});
 
 			})
 
@@ -75,6 +90,7 @@ var mark = {
 												var dropdown = '';
                         var t = $.parseJSON(e);
                         var color = "#E91E63";
+												var x = 1;
                         $.each(t,function(key, val) {
 
                             if(val.chg > 0) {
@@ -95,7 +111,10 @@ var mark = {
                             html += `   <td class="_mb">${val.last_trade}</td>`;
                             html += '</tr>';
 
-														dropdown += `<option value="${val.basis_id}">${val.delivery}</option>`;
+														if (x <=5) {
+															dropdown += `<option value="${val.basis_id}">${val.delivery}</option>`;
+															x++;
+														}
 														mark.contractValues[val.basis_id] = val.bid;
 
                         });
