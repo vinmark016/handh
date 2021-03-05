@@ -2,6 +2,36 @@ $(document).ready(function() {
 
 	mark.init();
 
+	data = {
+			 action: 'readBasis',
+			 json:1
+	 };
+
+	setInterval(
+
+		function(){
+
+			data = {
+					 action: 'readBasis',
+					 json:1
+			 };
+
+			mark.ajaxCall(data, "POST", true)
+
+		}	,60000);
+
+	// 	$('#btnReserve').click(function() {
+	// 		 var clickBtnValue = $(this).val();
+	//   $.ajax({
+	//     type: "POST",
+	//     url: "./mailus.php",
+	//     // data: { name: "John" }
+	// 		data =  {'action': clickBtnValue}
+	//   }).done(function( msg ) {
+	//     alert( "Email Sent ");
+	//   });
+	// 	// alert( "Under Maintenance, it will be back soon!");
+	// });
 });
 
 var mark = {
@@ -46,6 +76,8 @@ var mark = {
        };
 
        mark.ajaxCall(data, "POST", true);
+
+
 
     },
 		numberFormat: function(number, decimals, dec_point, thousands_sep) {
@@ -101,27 +133,75 @@ var mark = {
                                 color = "#E91E63";
                             }
 
-                            html += '<tr>';
-                            html += `   <td>${val.delivery}</td>`;
-                            html += `   <td>${val.bid}</td>`;
+                            // html += '<tr>';
+                            // html += `   <td>${val.delivery}</td>`;
+                            // html += `   <td>${val.bid}</td>`;
+                            // html += `   <td>${val.basis}</td>`;
+                            // html += `   <td>${val.futures}</td>`;
+                            // html += `   <td style="font-weight:bold; color:${color};">${val.chg}</td>`;
+                            // html += `   <td class="_mb">${val.symbol}</td>`;
+                            // html += `   <td class="_mb">${val.last_trade}</td>`;
+                            // html += '</tr>';
+
+														html += '<tr>';
+                            html += `   <td>${val.month}</td>`;
+                            html += `   <td>${val.bidvalue}</td>`;
                             html += `   <td>${val.basis}</td>`;
-                            html += `   <td>${val.futures}</td>`;
-                            html += `   <td style="font-weight:bold; color:${color};">${val.chg}</td>`;
-                            html += `   <td class="_mb">${val.symbol}</td>`;
-                            html += `   <td class="_mb">${val.last_trade}</td>`;
+                            html += `   <td>${val.converted_last}</td>`;
+														html += `		<td><a href="#" class="btn btn-success btn-sm" id="tdModal" data-value="${val.id}" data-toggle="modal" data-target=".bs-example-modal-lg">Contract</a> </td>`;
                             html += '</tr>';
 
-														if (x <=5) {
-															dropdown += `<option value="${val.basis_id}">${val.delivery}</option>`;
-															x++;
-														}
-														mark.contractValues[val.basis_id] = val.bid;
+														$("#contractMonths").empty();
 
+														//== if (x <=5) {
+															// dropdown += `<option value="${val.basis_id}">${val.delivery}</option>`;
+															dropdown += `<option value="${val.id}" data-bid="${val.bidvalue}" data-basis="${val.basis}" data-convlast="${val.converted_last}">${val.month}</option>`;
+															// x++;
+														// }
+														mark.contractValues[val.basis_id] = val.bid;
                         });
 
 												$("#contractMonths").append(dropdown);
                         $("#cornBids tbody").html(html);
 
+												$(function(){
+													   $('select').change(function(){
+													       var selected = $(this).find('option:selected');
+													       var bidval = selected.data('bid');
+																 var basisval = selected.data('basis');
+																 var convlast = selected.data('convlast');
+													       $("#bidValue").val(bidval);
+																 $("#radio-bid").val(bidval);
+																 $("#radio-basis").val(basisval);
+																 $("#radio-futures").val(convlast);
+																 $('label[for=radio-bid]').html('BID  ' + '   ' + bidval);
+																 $('label[for=radio-basis]').html('BASIS  ' + '   ' + basisval);
+																 $('label[for=radio-futures]').html('FUTURES  ' + '   ' + convlast);
+													    });
+													});
+
+											$(function(){
+														$('#exampleModal').on('show.bs.modal',function(){
+																var selected = $(this).find('option:selected');
+																var bidval = selected.data('bid');
+																var basisval = selected.data('basis');
+																var convlast = selected.data('convlast');
+																$("#bidValue").val(bidval);
+																$("#radio-bid").val(bidval);
+																$("#radio-basis").val(basisval);
+																$("#radio-futures").val(convlast);
+																$('label[for=radio-bid]').html('BID  ' + '   ' + bidval);
+																$('label[for=radio-basis]').html('BASIS  ' + '   ' + basisval);
+																$('label[for=radio-futures]').html('FUTURES  ' + '   ' + convlast);
+															});
+														});
+
+												$('#exampleModal').on('show.bs.modal', function (event) {
+											  var button = $(event.relatedTarget);
+											  var recipient = button.data('value');
+												$("#contractMonths option[value='"+recipient+"']").prop("selected", true);
+												// $("#bidValue").val(val.bid);
+											})
                     break;
 
                 }
